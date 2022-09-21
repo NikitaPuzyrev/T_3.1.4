@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title></title>
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-11 bg-dark border-0 text-light">
+            <th th:text="${user.username}" ></th>
+            with roles
+            <th th:text="${user.roles}"></th>
+        </div>
+
+        <div class="col-md-1" style="background-color: black">
+            <div>
+                <form th:action="@{/logout}" method="post">
+                    <input class="border-0 text-light bg-dark" type="submit" value="Logout"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row container-fluid">
+    <div class="col-md-2 active btn-outline-primary" >
+        <div>
+            <form >
+                <div class="d-grid "><input class="btn border-0 btn-primary text-light" type="submit" value="User"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <h2><strong>User information-page</strong></h2>
+    </div>
+</div>
+<div class="row container-fluid">
+    <div class="col-md-2"></div>
+    <div class="col-md-10" >
+<table class="table table-bordered">
+   <h4> About user</h4>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Active</th>
+        <th>UserName</th>
+        <th>Password</th>
+        <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.active}"></td>
+        <td th:text="${user.username}"></td>
+        <td ></td>
+        <td th:text="${user.roles}"></td>
+
+    </tr>
+        </tbody>
+</table>
+    </div>
+    </div>
+<!--<title>Update user</title>
+</head>
+<body>
+<form action="#" th:action="@{/userUpdate}" th:object="${user}" method="post">
+    <label for="id">Id read only </label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
+    <label for="roles">Role read only </label>
+    <input readonly type="text" th:field="*{roles}" id="roles" placeholder="Role">
+    <br/>
+    <label for="active">Activ reead only</label>
+    <input readonly type="text" th:field="*{active}" id="active" placeholder="Active">
+    <br/>
+    <br/>
+    <br/>
+    <label for="username">Username</label>
+    <input type="text" th:field="*{username}" id="username" placeholder="Username">
+    <br/>
+    <label for="password">Password</label>
+    <input type="text" th:field="*{password}" id="password" placeholder="Password">
+    <br/>
+
+    <input type="submit" value="Update user">
+</form>
+<br/>
+<br/>
+<br/>
+<div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<a href="/user">User</a>
+</br></br></br>-->
+</body>
+</html>
