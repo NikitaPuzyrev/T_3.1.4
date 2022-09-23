@@ -1,8 +1,7 @@
 $(async function () {
     await getTableWithUsers();
-    getNewUserForm();
-    getDefaultModal();
-    addNewUser();
+    await getDefaultModal();
+    await addNewUser();
 })
 
 
@@ -68,24 +67,6 @@ async function getTableWithUsers() {
         defaultModal.modal('show');
     })
 }
-
-
-async function getNewUserForm() {
-    let button = $(`#SliderNewUserForm`);
-    let form = $(`#defaultSomeForm`)
-    button.on('click', () => {
-        if (form.attr("data-hidden") === "true") {
-            form.attr('data-hidden', 'false');
-            form.show();
-            button.text('Hide panel');
-        } else {
-            form.attr('data-hidden', 'true');
-            form.hide();
-            button.text('Show panel');
-        }
-    })
-}
-
 
 // что то деалем при открытии модалки и при закрытии
 // основываясь на ее дата атрибутах
@@ -161,7 +142,7 @@ async function editUser(modal, id) {
 
         const response = await userFetchService.updateUser(data, id);
         if (response.ok) {
-            getTableWithUsers();
+            await getTableWithUsers();
             modal.modal('hide');
         } else {
             let body = await response.json();
@@ -210,7 +191,7 @@ async function deleteUser(modal, id) {
     $("#deleteButton").click(async () => {
         const response = await userFetchService.deleteUser(id)
         if (response.ok) {
-            getTableWithUsers();
+            await getTableWithUsers();
             modal.modal('hide');
         } else {
             let body = await response.json();
