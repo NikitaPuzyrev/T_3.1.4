@@ -160,6 +160,7 @@ async function editUser(modal, id) {
         }
 
         const response = await userFetchService.updateUser(data, id);
+        console.log(user.roles);
         if (response.ok) {
             getTableWithUsers();
             modal.modal('hide');
@@ -237,6 +238,20 @@ async function addNewUser() {
         let data = {
             username: username, password: password, active: active, roles: roles
         }
-        await userFetchService.addNewUser(data);
+
+
+        const response = await userFetchService.addNewUser(data);
+        if (response.ok) {
+            await getTableWithUsers();
+        } else {
+            let body = await response.json();
+            let alert = `<div class="alert alert-danger alert-dismissible fade show col-12" role="alert" id="sharaBaraMessageError">
+                            ${body.info}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>`;
+            addUserForm.prepend(alert)
+        }
     })
 }
