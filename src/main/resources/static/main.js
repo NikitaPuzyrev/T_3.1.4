@@ -160,7 +160,6 @@ async function editUser(modal, id) {
         }
 
         const response = await userFetchService.updateUser(data, id);
-        console.log(user.roles);
         if (response.ok) {
             getTableWithUsers();
             modal.modal('hide');
@@ -226,7 +225,7 @@ async function deleteUser(modal, id) {
     })
 }
 
-
+//добавление нового юзера
 async function addNewUser() {
     $('#addNewUserButton').click(async () => {
         let addUserForm = $('#userForm')
@@ -238,8 +237,6 @@ async function addNewUser() {
         let data = {
             username: username, password: password, active: active, roles: roles
         }
-
-
         const response = await userFetchService.addNewUser(data);
         if (response.ok) {
             await getTableWithUsers();

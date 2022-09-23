@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-
     <link href="webjars/bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
     <title>Index</title>
 </head>
@@ -11,11 +9,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-11 bg-dark border-0 text-light">
-            <th th:text="${user.username}" ></th>
+            <th th:text="${user.username}"></th>
             with roles
             <th th:text="${user.roles}"></th>
         </div>
-
         <div class="col-md-1" style="background-color: black">
             <div>
                 <form th:action="@{/logout}" method="post">
@@ -41,8 +38,6 @@
     </div>
     <div class="col-md-2">
         <td><a th:href="@{/myPage}" class="btn btn border-0 bg-light text-info ">User</a></td>
-
-
     </div>
 </div>
 <div class="container-fluid">
@@ -61,11 +56,11 @@
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
+
                 <!--таблица юзеров-->
                 <div class="container-fluid tab-pane fade show active" id="userTable" role="tabpanel"
                      aria-labelledby="userTable-tab">
                     <div class="row">
-
                         <div class="col-md-10" style="width: 100%">
                             <div class="row">
                                 <table class="table table-striped" id="mainTableWithUsers">
@@ -75,7 +70,6 @@
                                         <th>Username</th>
                                         <th>Active</th>
                                         <th>Role</th>
-
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -91,57 +85,58 @@
                      aria-labelledby="newUser-tab">
                     <div class="row">
                         <div class="col-md-10" style="width: 100%">
-
-                                <h4 class="row-cols-md-3 text-left">Add new user</h4><br>
-
-                                <form class="text-center container-fluid w-50" id="userForm">
-                                    <label class="col-form-label"><strong>Username</strong></label>
-                                    <input class="form-control bg-warning " id="AddNewUserUsername" type="text"
-                                           placeholder="Username"><br>
-                                    <label class="col-form-label"><strong>Password</strong></label>
-                                    <input class="form-control bg-warning" id="AddNewUserPassword" type="password"
-                                           placeholder="password"><br>
-                                    <label class="col-form-label"><strong>Active</strong></label>
-                                    <input class="form-control " id="AddNewUserActive" type="text"
-                                           placeholder="active"><br>
-                                    <label class="col-form-label"><strong>Role</strong></label>
-                                    <select multiple class="form-select w-100" size="2" id="AddNewUserRoles" type="text"><br>
-                                        <option value='{"id": 1, "name": "ROLE_USER","authority": "ROLE_USER"}'>
-                                            USER</option>
-                                        <option value='{"id": 2, "name": "ROLE_ADMIN", "authority": "ROLE_ADMIN"}'>
-                                            ADMIN</option>
-                                    </select><br><br>
-                                    <button id="addNewUserButton" class="btn btn-success" type="submit" href="#newUser"> Add new user</button>
-                                </form>
-
-                            </div>
+                            <h4 class="row-cols-md-3 text-left">Add new user</h4><br>
+                            <form class="text-center container-fluid w-50" id="userForm">
+                                <label class="col-form-label"><strong>Username</strong></label>
+                                <input class="form-control bg-warning " id="AddNewUserUsername" type="text"
+                                       placeholder="Username"><br>
+                                <label class="col-form-label"><strong>Password</strong></label>
+                                <input class="form-control bg-warning" id="AddNewUserPassword" type="password"
+                                       placeholder="password"><br>
+                                <label class="col-form-label"><strong>Active</strong></label>
+                                <input class="form-control " id="AddNewUserActive" type="text"
+                                       placeholder="active"><br>
+                                <label class="col-form-label"><strong>Role</strong></label>
+                                <select multiple class="form-select w-100" size="2" id="AddNewUserRoles"
+                                        type="text"><br>
+                                    <option value='{"id": 1, "name": "ROLE_USER","authority": "ROLE_USER"}'>
+                                        USER
+                                    </option>
+                                    <option value='{"id": 2, "name": "ROLE_ADMIN", "authority": "ROLE_ADMIN"}'>
+                                        ADMIN
+                                    </option>
+                                </select><br><br>
+                                <button id="addNewUserButton" class="btn btn-success" type="submit" href="#newUser"> Add
+                                    new user
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <!--скрытое дефолтное модальное окно -->
-                <div class="modal fade" id="someDefaultModal" tabindex="-1" role="dialog" aria-labelledby="someDefaultModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+            </div>
 
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <div class="modal-body">
-                            </div>
-
-                            <div class="modal-footer">
-                            </div>
+            <!--скрытое дефолтное модальное окно -->
+            <div class="modal fade" id="someDefaultModal" tabindex="-1" role="dialog"
+                 aria-labelledby="someDefaultModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script src="webjars/jquery/3.5.1/jquery.js"></script>
