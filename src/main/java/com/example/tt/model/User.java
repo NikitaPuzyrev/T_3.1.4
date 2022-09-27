@@ -3,6 +3,7 @@ package com.example.tt.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
 

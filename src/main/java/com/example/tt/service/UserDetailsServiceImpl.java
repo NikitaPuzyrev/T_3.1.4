@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
+
 public class UserDetailsServiceImpl implements UserService, UserDetailsService {
 
     private final UserDao userDao;
@@ -46,6 +46,7 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public void addNewUser(User user) {
         user.setPassword(securityService.getCrypt(user.getPassword()));
         userDao.saveUser(user);
@@ -53,13 +54,13 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Set<User> findAllUsers() {
-        // sorted by id
         return userDao.getAllUsers().stream()
                 .sorted(Comparator.comparing(User::getId))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     @Override
+    @Transactional
     public void updateUser(User user) {
         user.setPassword(securityService.getCrypt(user.getPassword()));
         userDao.saveUser(user);
@@ -71,17 +72,9 @@ public class UserDetailsServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public void deleteUserById(int id) {
         userDao.deleteById(id);
     }
-  /*  @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
-        }
-        return  user;
-    }*/
 
 }

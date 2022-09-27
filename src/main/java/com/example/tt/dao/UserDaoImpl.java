@@ -14,12 +14,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return entityManager.createQuery("select  u from User u", User.class).getResultList();
+        return entityManager.createQuery("select  u from User u JOIN FETCH u.roles", User.class).getResultList();
     }
 
     @Override
     public User findById(int id) {
-        list = entityManager.createQuery("select user from User user where user.id =: idParam", User.class)
+        list = entityManager.createQuery("select user from User user JOIN FETCH user.roles where user.id =: idParam", User.class)
                 .setParameter("idParam", id).getResultList();
         if (list != null) {
             return list.get(0);
@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void saveUser(User user) {
+    public void saveUser(User user ) {
         entityManager.merge(user);
     }
 
@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByUsername(String userName) {
-        list = entityManager.createQuery("select user from User user where user.username =: usernameParam", User.class)
+        list = entityManager.createQuery("select user from User user JOIN FETCH user.roles where user.username =: usernameParam", User.class)
                 .setParameter("usernameParam", userName).getResultList();
         if (list != null) {
             return list.get(0);

@@ -13,9 +13,3 @@ public class Application {
     }
 
 }
-/*
-    AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MvcConfig.class);
-        SpringApplication.run(Application.class, args);
-        Communication communication = context.getBean("communication", Communication.class);
-        List<User> allUsers = communication.getAllUsers();
-        System.out.println(allUsers);*/

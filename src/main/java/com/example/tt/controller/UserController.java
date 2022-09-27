@@ -2,7 +2,6 @@ package com.example.tt.controller;
 
 import com.example.tt.model.User;
 import com.example.tt.service.UserDetailsServiceImpl;
-import com.example.tt.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +27,7 @@ public class UserController {
     }
 
 
-    @GetMapping("myPage")
+    @GetMapping("/myPage")
     public String pageUserForm(Principal principal) {
         User user = userService.findByUsername(principal.getName());
         return "redirect:/userPage/" + user.getId();

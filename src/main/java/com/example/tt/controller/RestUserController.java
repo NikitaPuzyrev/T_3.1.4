@@ -24,7 +24,7 @@ public class RestUserController {
 
     private final UserService userService;
 
-    @Autowired
+
     public RestUserController(UserService userService) {
         this.userService = userService;
     }
@@ -37,6 +37,7 @@ public class RestUserController {
                 .addAttribute(us);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
+
 
     @GetMapping("/users/{id}")
     public ResponseEntity<User> apiGetOneUser(@PathVariable("id") int id) {

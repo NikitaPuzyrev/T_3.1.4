@@ -1,7 +1,7 @@
 $(async function () {
     await getTableWithUsers();
     await getDefaultModal();
-    await addNewUser();
+
 })
 
 
@@ -119,8 +119,8 @@ async function editUser(modal, id) {
                 <label for="ActiveEdit" class="col-form-label"><strong>Active</strong></label>
                 <input class="form-control" id="active" type="text" value="${user.active}">
                 <label for="RoleEdit"  class="form-select"><strong>Role</strong></label><br>
-                <select multiple class="form-select" size="2" id="roles"   type="text" >
-                    <option value= '{"id": 1, "name": "ROLE_USER","authority": "ROLE_USER"}' >USER</option>
+                <select multiple class="form-select" size="2" id="roles"   type="text">
+                    <option value= '{"id": 1, "name": "ROLE_USER","authority": "ROLE_USER"}'  >USER</option>
                     <option value='{"id": 2, "name": "ROLE_ADMIN", "authority": "ROLE_ADMIN"}' >ADMIN</option>
                 </select> 
             </form>
@@ -207,29 +207,37 @@ async function deleteUser(modal, id) {
 }
 
 //добавление нового юзера
-async function addNewUser() {
-    $('#addNewUserButton').click(async () => {
-        let addUserForm = $('#userForm')
-        let username = addUserForm.find('#AddNewUserUsername').val().trim();
-        let password = addUserForm.find('#AddNewUserPassword').val().trim();
-        let active = addUserForm.find('#AddNewUserActive').val().trim();
-        let roles = addUserForm.find("#AddNewUserRoles").val();
-        roles = JSON.parse(`[${roles}]`)
-        let data = {
-            username: username, password: password, active: active, roles: roles
-        }
-        const response = await userFetchService.addNewUser(data);
-        if (response.ok) {
-            await getTableWithUsers();
+const addUser = document.getElementById("addUser");
+addUser.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(addUser);
+    const user = {
+        roles: []
+    };
+    formData.forEach((value, key) => {
+        if (key === "rolesId") {
+
+            const roleId = value.split(" ")[0];
+            const roleName = value.split(" ")[1];
+            const role = {
+                id: roleId,
+                name: roleName
+            };
+            user.roles.push(role);
         } else {
-            let body = await response.json();
-            let alert = `<div class="alert alert-danger alert-dismissible fade show col-12" role="alert" id="sharaBaraMessageError">
-                            ${body.info}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>`;
-            addUserForm.prepend(alert)
+            user[key] = value;
         }
-    })
+    });
+    userFetchService.addNewUser(user)
+
+        .then(() => getTableWithUsers())
+        .then(() => addUser.reset());
+    return show('tableUsers', 'newUser')
+})
+
+function show(shown, hidden) {
+    document.getElementById(shown).style.display = 'block';
+    document.getElementById(hidden).style.display = 'none';
+    return false;
 }
