@@ -4,11 +4,9 @@ import com.example.tt.model.User;
 import com.example.tt.service.UserDetailsServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -20,7 +18,7 @@ public class AdminController {
 
     private final UserDetailsServiceImpl userService;
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String findAllUser(Principal principal, Model model) {
         User us = userService.findByUsername(principal.getName());
         model.addAttribute("user", us);

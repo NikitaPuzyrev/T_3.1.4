@@ -5,7 +5,6 @@ import com.example.tt.ExeptionHandler.UserWithSuchLoginExist;
 import com.example.tt.model.User;
 import com.example.tt.service.UserService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +17,14 @@ import java.security.Principal;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@RestController
+@org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
-public class RestUserController {
+public class RestController {
 
     private final UserService userService;
 
 
-    public RestUserController(UserService userService) {
+    public RestController(UserService userService) {
         this.userService = userService;
     }
 

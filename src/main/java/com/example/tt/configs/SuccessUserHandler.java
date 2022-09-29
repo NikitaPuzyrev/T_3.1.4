@@ -25,7 +25,7 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
         Set<Role> rol = principal.getRoles();
         List<String> roles = rol.stream().map(Role::toString).collect(Collectors.toList());
         if (roles.contains("ROLE_ADMIN")) {
-            httpServletResponse.sendRedirect("/");
+            httpServletResponse.sendRedirect("/index");
         } else if (roles.contains("ROLE_USER")) {
             httpServletResponse.sendRedirect("/myPage");
         } else {
