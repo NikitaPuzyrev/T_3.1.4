@@ -2,9 +2,7 @@ package com.example.tt.configs;
 
 import com.example.tt.model.Role;
 import com.example.tt.model.User;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
